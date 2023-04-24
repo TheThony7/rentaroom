@@ -20,6 +20,14 @@ class Reservation
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?\DateTimeInterface $enddate = null;
 
+    #[ORM\ManyToOne(inversedBy: 'reservations')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?room $room = null;
+
+    #[ORM\ManyToOne(inversedBy: 'reservations')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?user $user = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -45,6 +53,30 @@ class Reservation
     public function setEnddate(\DateTimeInterface $enddate): self
     {
         $this->enddate = $enddate;
+
+        return $this;
+    }
+
+    public function getRoom(): ?room
+    {
+        return $this->room;
+    }
+
+    public function setRoom(?room $room): self
+    {
+        $this->room = $room;
+
+        return $this;
+    }
+
+    public function getUser(): ?user
+    {
+        return $this->user;
+    }
+
+    public function setUser(?user $user): self
+    {
+        $this->user = $user;
 
         return $this;
     }
