@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Toutes les notes
+{% endblock %}
+
+{% block body %}
+    <h1 class="h3 mb-3 font-weight-normal text-center">Toutes les salles</h1>
+
+	<div class="row mt-5 mx-5">
+		{% for item in liste_twig %}
+			<div class="col-md-4 mb-4">
+				<div class="shadow card card-bg rounded-4">
+					<div class="card-body">
+						<h5 class="card-title text-center">{{ item.name }}</h5>
+						<p class="card-text">Description :<br>{{ item.description }}</p>
+						<div class="text-center">
+						<a href={{ path('app_room', { id: item.id } ) }} class="btn btn-success ">En savoir plus...</a>
+						</div>
+					</div>
+				</div>
+			</div>
+        {% endfor %}
+	</div>
+{% endblock %}
