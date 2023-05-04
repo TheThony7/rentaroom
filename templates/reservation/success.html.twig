@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Success !
+{% endblock %}
+
+{% block body %}
+    <div class="card mx-5 ">
+        <div class="card-body">
+            <h1 class="card-title text-center">Votre réservation a été correctement enregistré.</h1><br>
+            <h3 class="card-text text-center">Merci d'avoir réservé une salle chez nous !</h3><br>
+            <div  class="text-center">
+                <a href={{path ('app_home')}} class="btn btn-success mx-5">Retour à l'accueil</a>
+                <a href={{path ('app_rooms')}} class="btn btn-success mx-5">Les salles</a>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+

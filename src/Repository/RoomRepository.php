@@ -39,6 +39,38 @@ class RoomRepository extends ServiceEntityRepository
         }
     }
 
+    public function findByCriteria(array $criteria)
+    {
+        
+        $queryBuilder = $this->createQueryBuilder('r');
+        $queryBuilder->join('r.material', 'm');
+        $queryBuilder->join('r.software', 's');
+        $queryBuilder->join('r.ergonomics', 'e');
+        
+        // Ajout d'une condition sur la capacité minimal de la salle
+        if (isset($criteria['capacity'])) {
+            $queryBuilder->andWhere('r.capacity >= :capacity')
+                ->setParameter('capacity', $criteria['capacity']);
+        }
+        
+        foreach($criteria['material'] as $material){
+            $queryBuilder->andWhere('m.id IN (:material)')
+            ->setParameter('material', $material);
+        }
+
+        foreach($criteria['software'] as $software){
+            $queryBuilder->andWhere('s.id IN (:software)')
+            ->setParameter('software', $software);
+        }
+
+        foreach($criteria['ergonomics'] as $ergonomic){
+        $queryBuilder->andWhere('e.id IN (:ergonomics)')
+        ->setParameter('ergonomics', $ergonomic);
+        }
+
+    return $queryBuilder->getQuery()->getResult();
+    }
+}
 //    /**
 //     * @return Room[] Returns an array of Room objects
 //     */
@@ -63,4 +95,4 @@ class RoomRepository extends ServiceEntityRepository
 //            ->getOneOrNullResult()
 //        ;
 //    }
-}
+

@@ -25,7 +25,10 @@ class Material
     {
         $this->rooms = new ArrayCollection();
     }
-
+    public function __toString(): string
+    {
+        return $this->getName();
+    }
     public function getId(): ?int
     {
         return $this->id;
@@ -68,5 +71,10 @@ class Material
         }
 
         return $this;
+    }
+    
+    public function room_id(): ?string
+    {
+        return $this->name;
     }
 }

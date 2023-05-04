@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modifier une réservation{% endblock %}
+
+{% block body %}
+    <div class="card text-center mx-5">
+    <h1 class=" mb-3 text-center text-success">Modifier une réservation</h1>
+
+    {{ form_start(form) }}
+
+    {{ form_widget(form.startDate) }}
+    {{ form_widget(form.endDate) }}
+
+    {{ form_widget(form.save) }}
+
+    {{ form_end(form) }}
+    </div>
+{% endblock %}

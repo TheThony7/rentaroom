@@ -4,15 +4,40 @@
 {% endblock %}
 
 {% block body %}
-    <h1 class="h3 mb-3 font-weight-normal text-center">Toutes les salles</h1>
+
+<h1 class=" mb-3 font-weight-normal text-center text-success">Toutes les salles</h1>
+
+<div class="card mx-5 text-center success">
+	{{ form_start(form) }}
+	<div>
+		{{ form_label(form.material) }} :
+		{{ form_widget(form.material) }}
+	</div>
+	<div>
+		{{ form_label(form.software) }} :
+		{{ form_widget(form.software) }}
+	</div>
+	<div>
+		{{ form_label(form.ergonomics) }} :
+		{{ form_widget(form.ergonomics) }}
+	</div>
+	<br>
+	<div >
+        {{ form_label(form.capacity) }}
+        {{ form_widget(form.capacity) }}
+    </div>
+	<br>
+	{{ form_widget(form.filter) }}
+	{{ form_end(form) }}
+</div>
 
 	<div class="row mt-5 mx-5">
-		{% for item in liste_twig %}
+		{% for item in rooms %}
 			<div class="col-md-4 mb-4">
-				<div class="shadow card card-bg rounded-4">
+				<div class="shadow card card-bg rounded-4 br-3">
 					<div class="card-body">
 						<h5 class="card-title text-center">{{ item.name }}</h5>
-						<p class="card-text">Description :<br>{{ item.description }}</p>
+						<p class="card-text"><i>Description :</i><br>{{ item.description }}</p>
 						<div class="text-center">
 						<a href={{ path('app_room', { id: item.id } ) }} class="btn btn-success ">En savoir plus...</a>
 						</div>

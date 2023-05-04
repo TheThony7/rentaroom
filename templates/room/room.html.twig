@@ -3,15 +3,33 @@
 {% block title %}{{ oneRoom.name }}{% endblock %}
 
 {% block body %}
-<h1 class="h3 mb-3 text-center">{{ oneRoom.name }}</h1>
-<div class="card card p-4 rounded-3">
-	<p>Description :<br>{{ oneRoom.description }}</p>
-	<p>Capacité : {{ oneRoom.capacity }} personnes</p>
+<h1 class=" mb-3 text-center text-success">{{ oneRoom.name }}</h1>
+<div class="row mx-5 border border-success border-5 rounded-3" >
+	<p><h2>Description :</h2><br>{{ oneRoom.description }}</p>
+	<p><h2>Capacité :</h2> {{ oneRoom.capacity }} personnes.
+		<br>
+		<br>
+		<h2> Equipements :</h2>
+		{% for material in oneRoom.material %}
+		{{material.name}}{% if not loop.last %}, {% endif %}{% endfor %}.
+		<br>
+		<br>
+		<h2> Logiciels :</h2>
+		{% for software in oneRoom.software %}
+		{{software.name}}{% if not loop.last %}, {% endif %}{% endfor %}.
+		<br>
+		<br>
+		<h2> Ergonomie :</h2>
+		{% for ergonomics in oneRoom.ergonomics %}
+		{{ergonomics.name}}{% if not loop.last %}, {% endif %}{% endfor %}.
+	</p>
 </div>
-            <div class="text-center">
-            <br>
-            <a class="btn btn-success" href={{ path('app_rooms') }}>Revenir à toutes les notes</a>
-            <a class="btn btn-success">Réserver {{ oneRoom.name }}</a>
 
-            </div>
+<div class="text-center">
+<br>
+<a class="btn btn-success" href={{ path('app_rooms') }}>Revenir à toutes les salles</a>
+<a class="btn btn-success" href={{ path ("app_reservation", {'id': oneRoom.id }) }}>Réserver {{ oneRoom.name }}</a>
+</div>
 {% endblock %}
+
+
